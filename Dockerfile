@@ -19,6 +19,7 @@ ENV bobjlanguage=en
 ENV tomcatport=8080
 ENV bobjlicensekey=00000-0000000-0000000-0000
 ENV bobjcmsport=6401
+ENV databasetype=Oracle
 ENV databaseuser=dbuser
 ENV databasepwd=dbpasswd
 ENV dbservice=bobjsrv
@@ -29,7 +30,7 @@ ENV bobjtomcatshut=8005
 # Prerequisite
 ENV LANG=en_US.utf8
 ENV LC_ALL=en_US.utf8
-CMD yum install compat-libstdc++-33-3.2.3-69.el6.i686 compat-libstdc++-33.i686 compat-libstdc++-33-3.x86_x64 glibc.i686 libstdc++.i686 libX11-1.3-2.el6.i686
+CMD yum install libstdc++.i686,libstdc++.x86_64,compat-libstdc++-33.i686,compat-libstdc++-33.x86_64,glibc.i686,glibc.x86_64,libX11.i686,libX11.x86_64,libXext.i686,libXext.x86_64,expat.i686,expat.x86_64,libgcc.i686,libgcc.x86_64,libXcursor.i686
 RUN mkdir $installpath
 
 service iptables stop
@@ -43,7 +44,7 @@ ADD source/ $sourcepath
 
 # Trigger the installation
 WORKDIR $sourcepath
-RUN ./install -s $sourcepath -c $bobjlanguage -INSTALLDIR $installpath -BOBJELICENSEKEY $bobjlicensekey -INSTALLTYPE new -BOBJEINSTALLLOCAL user -CMSPORTNUMBER $bobjcmdport -DBTYPE Oracle -SERVICENAME $dbservice -DATABASEUID $databaseuser -DATABASEPWD $databasepwd -REINIT yes -INSTALLTOMCAT yes -TOMCATCONNECTORPORT $bobjtomcatport -TOMCATREDIRECTPORT $bobjtomcatredir -TOMCATSHUTDOWNPORT $bobjtomcatshut -REINIT yes
+RUN ./install -s $sourcepath -c $bobjlanguage -INSTALLDIR $installpath -BOBJELICENSEKEY $bobjlicensekey -INSTALLTYPE new -BOBJEINSTALLLOCAL user -CMSPORTNUMBER $bobjcmdport -DBTYPE $databasetype -SERVICENAME $dbservice -DATABASEUID $databaseuser -DATABASEPWD $databasepwd -REINIT yes -INSTALLTOMCAT yes -TOMCATCONNECTORPORT $bobjtomcatport -TOMCATREDIRECTPORT $bobjtomcatredir -TOMCATSHUTDOWNPORT $bobjtomcatshut -REINIT yes
 
 # Start the BOBJ Services
 WORKDIR $installpath/bobje
