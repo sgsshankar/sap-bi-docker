@@ -33,8 +33,8 @@ ENV LC_ALL=en_US.utf8
 CMD yum install libstdc++.i686,libstdc++.x86_64,compat-libstdc++-33.i686,compat-libstdc++-33.x86_64,glibc.i686,glibc.x86_64,libX11.i686,libX11.x86_64,libXext.i686,libXext.x86_64,expat.i686,expat.x86_64,libgcc.i686,libgcc.x86_64,libXcursor.i686
 RUN mkdir $installpath
 
-service iptables stop
-chkconfig iptables off
+RUN service iptables stop
+RUN chkconfig iptables off
 
 # Ports
 EXPOSE 8080 6400 6405
