@@ -10,7 +10,7 @@ LABEL author="sgsshankar" \
       platform="Redhat Linux" \
       license="Apache 2.0" \
       description="Docker file for SAP Business Objects" \
-      terms="Use at your own risk. No Warranty or Guarantee provided. This is not endorsed by my"
+      terms="Use at your own risk. No Warranty or Guarantee provided. This is not endorsed by my Employer"
 
 # Install Variables
 ENV sourcepath=/source
